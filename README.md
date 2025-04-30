@@ -1,1 +1,1 @@
-# mlops_sample
+# MLOps Sample Pipeline Design -> V1.0
