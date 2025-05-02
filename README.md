@@ -25,8 +25,9 @@ El entrenamiento de modelos implica el desarrollo de algoritmos predictivos util
 
 
 #### Tarea de predicción
----
+
 El modelo estará disponible en línea todo el tiempo (24/7). El modelo debe examinar los síntomas proporcionados por el médico, la información demográfica del paciente; edad, género, etnia, estado civil, nivel educativo y registros clínicos fecha de diagnóstico, duración de síntomas, diagnósticos anteriores para predecir con precisión la probabilidad de enfermedades comunes y raras.
+
 ---
 
 ### Parte 1: Diseño de Pipeline de Aprendizaje Automático
@@ -37,7 +38,7 @@ Según los requisitos y las etapas que se necesitan para el problema de clasific
 
 The next sections explain in detail the proposed pipeline.
 
-## Entrenamiento Offline
+### Entrenamiento Offline
 ---
 El entrenamiento offline comienza considerando a GitHub y GitHub Actions como los puntos de partida principales. Como en cualquier iteración de un modelo, el proceso de entrenamiento implica múltiples versiones, así como tareas y pruebas unitarias necesarias durante el desarrollo de nuevas versiones. En este contexto, GitHub —el proveedor por excelencia de repositorios— y GitHub Actions —la herramienta de integración y entrega continua (CI/CD) para desarrollo y pruebas— representan un punto de partida adecuado. Una vez que ambos están configurados para el nuevo modelo de clasificación, se da inicio al entrenamiento offline. Nota: se utilizará Python en todas las etapas que requieran un lenguaje de programación, a menos que se indique lo contrario.
 
@@ -77,6 +78,7 @@ Opcional: Si el equipo necesita seguir colaborando con paneles y visualizaciones
 ---
 
 ##### ¿Es hora de ponerlo en producción?
+
 Finalmente, una vez realizada  la evaluación exhaustiva del modelo para determinar si cumple con los criterios mínimos de calidad requeridos para su implementación en entorno productivo. Este proceso de validación constituye un punto crítico de decisión respecto al ciclo de vida del desarrollo.
 Si el modelo satisface los umbrales establecidos en términos de precisión, rendimiento computacional y otros indicadores relevantes, se transfiere formalmente al ingeniero responsable de su despliegue, quien ejecutará los protocolos técnicos necesarios para su integración en la infraestructura operativa.
 En caso contrario, cuando el modelo no alcanza los estándares predefinidos, se direcciona nuevamente hacia la fase de iteración. En esta etapa recursiva, se realizarán los ajustes pertinentes en aspectos como la selección de características, configuración de hiperparámetros, o incluso la reconsideración de algoritmos alternativos que potencialmente ofrezcan un rendimiento superior para la problemática específica.
@@ -85,8 +87,8 @@ Este mecanismo de retroalimentación garantiza que únicamente los modelos que d
 #### Publicar Modelo
 Posterior a las fases de Iteraciones del Moledo, Selección y Evaluación del Modelo,  tras la identificación del candidato más prometedor, y de realizar una evaluación exhaustiva para verificar si las métricas obtenidas satisfacen los umbrales predefinidos para su implementación en entornos productivos.
 La decisión de avanzar hacia la fase de producción debe fundamentarse en evidencia empírica sólida que respalde la capacidad del modelo para abordar efectivamente los requerimientos empresariales específicos, garantizando así un despliegue que genere valor tangible para la organización.
----
-##### Implementación del modelo
+
+#### Implementación del modelo
 Habitualmente, encapsulamos el modelo dentro de un contenedor y lo desplegamos para permitir que otros usuarios realicen predicciones con él, o para uso interno según se requiera. Para este problema específico, dado que necesitamos procesar varios millones de archivos diariamente dentro de una ventana de 30 minutos, el proceso demanda requisitos especializados de big data.
 Para implementar las predicciones, necesitamos serializar el modelo (utilizando formatos como binarios pickle estándar o esquemas protobuf) y exportarlo a procesadores de big data. Para este modelo, podemos utilizar Azure HDInsight, Azure Databricks con Spark para realizar el procesamiento intensivo. Esta plataforma nos permite aprovechar plenamente la potencia de nodos de trabajo distribuidos para paralelizar la mayoría de las predicciones requeridas. Este clúster multi-nodo puede configurarse con el trabajo de predicción una vez que el modelo ha sido serializado y exportado, permitiéndonos utilizar PySpark para escribir el script necesario que active este trabajo desde una llamada externa. El concepto fundamental es preparar el modelo para que pueda activarse simplemente mediante la invocación de este trabajo predefinido.
 Opcional: HDInsight puede configurarse para utilizar clústeres de Kubernetes. Se propone Kubernetes como opción si existen diferentes necesidades de infraestructura para el equipo de Ciencia de Datos y otras unidades. La principal ventaja de Kubernetes radica en que podemos desplegar recursos según sea necesario para los modelos de aprendizaje automático, y Azure Kubernetes Service (EKS) puede gestionar todos los nodos distribuidos por nosotros.
@@ -94,7 +96,7 @@ La arquitectura basada en Azure ofrece ventajas significativas en términos de e
 
 ---
 
-##### Predicciones del modelo
+#### Predicciones del modelo
 Una vez implementado en el entorno productivo, el sistema de predicción médica operará con disponibilidad ininterrumpida las veinticuatro horas del día, durante los siete días de la semana, garantizando acceso permanente para el personal médico. La arquitectura ha sido diseñada para proporcionar predicciones en tiempo real bajo demanda, respondiendo de manera inmediata a las solicitudes de los profesionales.
 Las prediciones se almacenan de forma extructura en Storaga de Azure.
 
