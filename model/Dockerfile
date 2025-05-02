@@ -1,8 +1,8 @@
 FROM python:3.12
 
-WORKDIR /app
+WORKDIR /
 
-COPY . /model
+COPY . /app
 
 # Install system dependencies if needed
 RUN apt-get update && apt-get install -y \
@@ -16,4 +16,4 @@ RUN pip install --no-cache-dir --upgrade pip
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["python", "application.py"]

@@ -1,13 +1,10 @@
-from model import diagnosis
+from model import diagnosticos
 from fastapi import FastAPI
 import uvicorn
 import logging
 import os
 
 logger = logging.getLogger(__name__)
-
-logger.setLevel(logging.INFO)
-logger.log(logging.INFO, "Iniciando la aplicación FastAPI")
 
 app = FastAPI()
 
@@ -16,7 +13,7 @@ async def root():
     """
     Endpoint raíz que devuelve un mensaje de bienvenida.
     """
-    return {"message": "Bienvenido a la API de predicción de diagnóstico "+__name__+"."}
+    return {"message": "Bienvenido a la App de predicción de diagnóstico "+__name__+"."}
 
 
 @app.post('/predictions')
@@ -26,10 +23,10 @@ async def procesar_diagnostico():
     """
     logger.info("Recibiendo datos para predicción")
     try :
-        prediction = diagnosis()
-        print("Predicción en appp.py:", prediction)  
+        prediction = diagnosticos()
+        print("Predicción en Application.py:", prediction)  
     except Exception as e:
-        #logger.error(f"Error en la predicción: {e}")
+         
         print(f"Error en la predicción: {e}")    
         return {"error": "Error en la predicción"}
     return {'diagnostico': prediction[0]}
