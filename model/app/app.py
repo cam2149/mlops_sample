@@ -1,4 +1,4 @@
-import pandas as pd 
+from model import diagnosis
 from fastapi import FastAPI
 import uvicorn
 import logging
