@@ -1,10 +1,8 @@
-import model as diagnosis
-import sys
-import os
-import pandas as pd
+import pandas as pd 
 from fastapi import FastAPI
 import uvicorn
 import logging
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -37,4 +35,4 @@ async def procesar_diagnostico():
     return {'diagnostico': prediction[0]}
 
 if __name__ == "__main__":
-    uvicorn.run("app:app",host="0.0.0.0",port=5500, reload=True)
+    uvicorn.run("app:app",host="0.0.0.0",port=5000, reload=True)
