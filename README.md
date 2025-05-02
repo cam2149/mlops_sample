@@ -102,7 +102,7 @@ Las prediciones se almacenan de forma extructura en Storaga de Azure.
 
 ---
 
-#### Model Monitoring
+#### Monitoreo del Modelo
 
 Aunque posiblemente no constituya un requisito inmediato, resulta altamente recomendable implementar un proceso exhaustivo de monitorización del modelo para identificar desviaciones, problemas de calidad de datos y degradación del rendimiento predictivo. Esta fase, crítica pero frecuentemente desatendida en numerosos flujos de trabajo de aprendizaje automático, adquiere relevancia estratégica en un sector tan exigente como el financiero.
 La implementación de Azure Monitor facilita la detección temprana de anomalías y permite adoptar medidas correctivas proactivas antes de que estas repercutan negativamente en los resultados empresariales. El sistema puede configurarse para generar notificaciones automáticas cuando los indicadores de rendimiento se desvían significativamente de los parámetros esperados.

@@ -1,8 +1,8 @@
-FROM python:3.12-slim
+FROM python:3.12
 
 WORKDIR /app
 
-COPY . /app
+COPY . /model
 
 # Install system dependencies if needed
 RUN apt-get update && apt-get install -y \
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 
 # Upgrade pip and install requirements
 RUN pip install --no-cache-dir --upgrade pip
-# RUN pip install --no-cache-dir -r requirements.txt
+#RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 
