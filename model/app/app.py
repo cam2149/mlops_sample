@@ -37,4 +37,4 @@ async def procesar_diagnostico():
     return {'diagnostico': prediction[0]}
 
 if __name__ == "__main__":
-    uvicorn.run("app:app",host="127.0.0.1",port=5500, reload=True)
+    uvicorn.run("app:app",host="0.0.0.0",port=5500, reload=True)
